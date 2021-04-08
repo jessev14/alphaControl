@@ -1,0 +1,19 @@
+{
+    "name": "alphaControl",
+    "title": "Alpha Control",
+    "description": "Change token/tile alpha value and set default alpha value for hidden entities.",
+    "author": "enso#0361",
+    "version": "1.0.0",
+    "minimumCoreVersion": "0.7.9",
+    "compatibleCoreVersion": "0.7.9",
+    "esmodules": [
+      "scripts/alphaControl.js"
+    ],
+    "languages": [
+        {
+          "lang": "en",
+          "name": "English",
+          "path": "lang/en.json"
+        }
+    ]
+  }
