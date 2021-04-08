@@ -7,7 +7,7 @@ It also allows changing of the default alpha value for hidden entities (default 
 
 # Usage
 
-<img src="/img/alphaControl-demo.wmv">
+<img src="/img/alphaControl-demo.gif" width="600">
 
 Alpha value can be changed programmatically by setting a flag on the entity.
 Token Example:
