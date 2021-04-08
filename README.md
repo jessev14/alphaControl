@@ -25,3 +25,6 @@ In addition, a private method of TileConfig is also overridden: `#_onChangeInput
 
 I'm fairly certain my implementation is the worst monkey patching practice you could do, but it's the only method I could figure out.
 If you have any ideas on how to clean this up, please reach out! (enso#0361)
+
+# Future Implementations
+* Currently the Tile Configuration app is set to open with a hard-coded height of 320px to accomodate the new alpha value input field. It would be preferable to make this height adapt to the necessary height to display all inputs, in case another module also adds input fields to the app.
