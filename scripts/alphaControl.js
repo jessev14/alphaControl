@@ -55,7 +55,7 @@ Hooks.once("init", () => {
         this.icon.position.set(this.w / 2, this.h / 2);
         //this.icon.alpha = this.data.hidden ? 0.5 : 1.0;
         const setHidden = game.settings.get("alphaControl", "hiddenToken");
-        const setAlpha = this.data.flags["alphaControl"]?.alpha ? this.data.flags["alphaControl"].alpha : 1.0;
+        const setAlpha = this.data.flags["alphaControl"]?.alpha ?? 1.0;
         this.icon.alpha = this.data.hidden ? setHidden : setAlpha;
 
 
@@ -96,7 +96,7 @@ Hooks.once("init", () => {
             // Toggle tile visibility
             //img.alpha = this.data.hidden ? 0.5 : 1.0;
             const setHidden = game.settings.get("alphaControl", "hiddenTile");
-            const setAlpha = this.data.flags["alphaControl"]?.alpha ? this.data.flags["alphaControl"].alpha : 1.0;
+            const setAlpha = this.data.flags["alphaControl"]?.alpha ?? 1.0;
             img.alpha = this.data.hidden ? setHidden : setAlpha;
 
 
