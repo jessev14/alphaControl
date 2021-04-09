@@ -1,7 +1,7 @@
 Hooks.once("init", () => {
     game.settings.register("alphaControl", "hiddenToken", {
-        name: game.i18n.localize("alphaControl.settings.hiddenToken.name"),
-        hint: "",
+        name: game.i18n.localize("alphaControl.settings.hiddenToken"),
+        hint: game.i18n.localize("alphaControl.settings.defaultHiddenHint"),
         scope: "world",
         config: true,
         type: Number,
@@ -10,12 +10,13 @@ Hooks.once("init", () => {
             min: 0.1,
             max: 1.0,
             step: 0.1
-        }
+        },
+        onChange: () => window.location.reload()
     });
 
     game.settings.register("alphaControl", "hiddenTile", {
-        name: game.i18n.localize("alphaControl.settings.hiddenTile.name"),
-        hint: "",
+        name: game.i18n.localize("alphaControl.settings.hiddenTile"),
+        hint: game.i18n.localize("alphaControl.settings.defaultHiddenHint"),
         scope: "world",
         config: true,
         type: Number,
@@ -24,7 +25,8 @@ Hooks.once("init", () => {
             min: 0.1,
             max: 1.0,
             step: 0.1
-        }
+        },
+        onChange: () => window.location.reload()
     });
 
     // Copied directly from foundry.js
@@ -127,9 +129,7 @@ Hooks.once("init", () => {
     // Edits to handle range-input on-change and to supress console error that occurs when making changes in Tile Config app
     TileConfig.prototype._onChangeInput = function _tileConfig(event) {
         const el = event.target;
-        if ( el.type === "range" ) {
-            return this._onChangeRange(event);
-        }
+        if (el.type === "range") return this._onChangeRange(event);
         const fd = new FormDataExtended(event.currentTarget.form);
         for (let [k, v] of Object.entries(fd.toObject())) {
             this.object.data[k] = v;
@@ -142,16 +142,15 @@ Hooks.once("init", () => {
 async function injectControlAlphaOptions(app, html, data) {
     if (!game.user.isGM) return;
     const entity = app.token ? "token" : "object";
-    const alpha = app[entity].getFlag("alphaControl", "alpha") ? app[entity].getFlag("alphaControl", "alpha") : 1.0;
+    const alpha = app[entity].getFlag("alphaControl", "alpha") ?? 1.0;
     const selector = entity === "token" ? "div[data-tab='image']:first" : "div[class='form-group']:last";
     const form = html.find(selector);
     const snippet = await renderTemplate(
         "modules/alphaControl/templates/config-snippet.hbs",
         { alpha }
     );
-    if (entity === "token") {
-        form.append(snippet);
-    } else {
+    if (entity === "token") form.append(snippet);
+    else {
         form.after(snippet);
         html[0].style.height = "320px";
     }
