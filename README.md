@@ -21,7 +21,7 @@ token.setFlag("alphaControl","alpha", 0.7);
 # Technical Notes
 
 Alpha Control functions by overriding the `#refresh` method of the Token and Tile classes.
-In addition, a private method of TileConfig is also overridden: `#_onChangeInput`. This patch was made to suppress console errors that occured when making chages to the Tile Configuration application and to extend handling to range inputs.
+In addition, a private method of TileConfig is also overridden: `#_onChangeInput`. This patch was made to suppress console errors that occured when making changes to the Tile Configuration application and to extend handling to range inputs.
 
 I'm fairly certain my implementation is the worst monkey patching practice you could do, but it's the only method I could figure out.
 If you have any ideas on how to clean this up, please reach out! (enso#0361)
