@@ -152,7 +152,7 @@ async function injectControlAlphaOptions(app, html, data) {
     if (entity === "token") form.append(snippet);
     else {
         form.after(snippet);
-        html[0].style.height = "320px";
+        html[0].style.height = "auto";
     }
 }
 
