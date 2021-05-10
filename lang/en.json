@@ -1,8 +1,7 @@
 {
-    "alphaControl.config-snippet": "Alpha:",
     "alphaControl.settings": {
-        "hiddenToken": "Alpha value for hidden tokens.",
-        "hiddenTile": "Alpha value for hidden tiles.",
+        "hiddenToken": "Alpha value for hidden tokens",
+        "hiddenTile": "Alpha value for hidden tiles",
         "defaultHiddenHint": "Default: 0.5"
     }
-}
+} 
