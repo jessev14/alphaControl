@@ -7,6 +7,10 @@
 
 # Alpha Control
 
+## 0.8.X
+- Token/Tiles opacity control now part of core Foundry VTT
+- Alpha Control now only allows GMs to override default alpha value for hidden entities.
+
 ## 0.7.9
 - Set alpha value for token and tiles in config menu.
 - Set default alpha values for hidden entities.
@@ -16,10 +20,6 @@ Token Example:
 ```js
 token.setFlag("alphaControl","alpha", 0.7);
 ```
-
-## 0.8.X
-- Token/Tiles opacity control now part of core Foundry VTT
-- Alpha Control now only allows GMs to override default alpha value for hidden entities.
 
 ## Technical Notes
 Alpha Control functions by patching the `#refresh` method of Tokens/Tiles.
