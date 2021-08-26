@@ -1,3 +1,6 @@
+import { libWrapper } from "../lib/shim.js";
+
+
 Hooks.once("init", () => {
     game.settings.register("alphaControl", "hiddenToken", {
         name: game.i18n.localize("alphaControl.settings.hiddenToken"),
@@ -28,16 +31,18 @@ Hooks.once("init", () => {
     });
 });
 
-const og_token_refresh = Token.prototype.refresh;
-CONFIG.Token.objectClass.prototype.refresh = function () {
-  og_token_refresh.call(this);  
-  this.icon.alpha = this.data.hidden ? game.settings.get("alphaControl", "hiddenToken") : this.data.alpha;
-  return this;
-};
+Hooks.once("setup", () => {
+    libWrapper.register("alphaControl", "CONFIG.Token.objectClass.prototype.refresh", function (wrapped) {
+        wrapped();
+        this.icon.alpha = this.data.hidden ? game.settings.get("alphaControl", "hiddenToken") : this.data.alpha;
+        
+        return this;
+    }, "WRAPPER");
 
-const og_tile_refresh = Tile.prototype.refresh;
-CONFIG.Tile.objectClass.prototype.refresh = function () {
-    og_tile_refresh.call(this);
-    this.tile.alpha = this.data.hidden ? game.settings.get("alphaControl", "hiddenTile") : this.data.alpha;
-    return this;
-};
+    libWrapper.register("alphaControl", "CONFIG.Tile.objectClass.prototype.refresh", function (wrapped) {
+        wrapped();
+        if (this.tile) this.tile.alpha = this.data.hidden ? game.settings.get("alphaControl", "hiddenTile") : this.data.alpha;
+
+        return this;
+    }, "WRAPPER");
+});
