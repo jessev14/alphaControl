@@ -22,7 +22,7 @@ jobs:
         download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/alphaControl.zip
 
     # create a zip file with all files required by the module to add to the release
-    - run: zip -r ./alphaControl.zip module.json scripts/ templates/ lang/
+    - run: zip -r ./alphaControl.zip module.json scripts/ templates/ lang/ lib/
 
     # Create a release for this specific version
     - name: Update Release with Files
